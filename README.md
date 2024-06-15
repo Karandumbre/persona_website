@@ -93,3 +93,14 @@ These terms and conditions are effective as of 2020-11-15
 If you have any questions or suggestions about our Privacy Policy and Terms and Conditions, do not hesitate to contact us at personastudio60@gmail.com.
 
 © Copyright 2024 Persona Studios
+
+## Link
+- [https://persona-editor.netlify.app/](https://persona-editor.netlify.app/)
+
+## Demo
+
+
+https://github.com/Karandumbre/persona_website/assets/40163773/e6954725-e3e0-4844-86a1-976518d2db91
+
+
+
