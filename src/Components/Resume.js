@@ -1,66 +1,47 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Resume extends Component {
-  getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
+export const Resume = ({ privacy_policies, skills }) => (
+  <section id="privacy-policy">
+    <div className="row work">
+      <div className="three columns header-col">
+        <h1>
+          <span>Privacy Policy</span>
+        </h1>
+      </div>
 
-  render() {
-    if (this.props.data) {
-      var work = this.props.data.privacy_policies.map(function (policy) {
-        return (
-          <div key={policy.company}>
-            <h3>{policy.company}</h3>
-            {Array.isArray(policy.description) &&
-              policy.description.map((des, key) => (
+      <div className="nine columns main-col">
+        {privacy_policies.map((policy, index) => {
+          return (
+            <div key={policy.company + index}>
+              <h3>{policy.company}</h3>
+              {policy.description.map((des, key) => (
                 <p key={`${key}-policy-list`}>{des}</p>
               ))}
-          </div>
-        );
-      });
+            </div>
+          );
+        })}
+      </div>
+    </div>
 
-      var skills = this.props.data.skills.map((work) => {
-        return (
-          <div key={work.company}>
-            <h3>{work.company}</h3>
-            {Array.isArray(work.description) &&
-              work.description.map((des, key) => (
-                <p key={`${key}-terms-and-condition`}>{des}</p>
+    <div className="row skill">
+      <div className="three columns header-col">
+        <h1>
+          <span>Terms &amp; Conditions</span>
+        </h1>
+      </div>
+
+      <div className="nine columns main-col">
+        {skills.map((work, index) => {
+          return (
+            <div key={work.company + index}>
+              <h3>{work.company}</h3>
+              {work.description.map((des, key) => (
+                <p key={`${key}-terms-and-condition-${index}`}>{des}</p>
               ))}
-          </div>
-        );
-      });
-    }
-
-    return (
-      <section id="privacy-policy">
-        <div className="row work">
-          <div className="three columns header-col">
-            <h1>
-              <span>Privacy Policy</span>
-            </h1>
-          </div>
-
-          <div className="nine columns main-col">{work}</div>
-        </div>
-
-        <div className="row skill">
-          <div className="three columns header-col">
-            <h1>
-              <span>Terms &amp; Conditions</span>
-            </h1>
-          </div>
-
-          <div className="nine columns main-col">{skills}</div>
-        </div>
-      </section>
-    );
-  }
-}
-
-export default Resume;
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+);

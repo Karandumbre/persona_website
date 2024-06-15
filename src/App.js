@@ -1,53 +1,22 @@
-import React, { Component } from "react";
-import ReactGA from "react-ga";
-import $ from "jquery";
-import "./App.css";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import About from "./Components/About";
-import Resume from "./Components/Resume";
+import React from "react";
+import { Header } from "./components/header";
+import { Footer } from "./components/footer";
+import { About } from "./components/about";
+import { Resume } from "./components/resume";
+import { Testimonials } from "./components/testimonials";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      foo: "bar",
-      personaData: {},
-    };
+// constants
+import { PERSONA } from "./constants/persona";
 
-    ReactGA.initialize("UA-110570651-1");
-    ReactGA.pageview(window.location.pathname);
-  }
-
-  getResumeData() {
-    $.ajax({
-      url: "./persona.json",
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        this.setState({ personaData: data });
-      }.bind(this),
-      error: function (xhr, status, err) {
-        console.log(err);
-        alert(err);
-      },
-    });
-  }
-
-  componentDidMount() {
-    this.getResumeData();
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header data={this.state.personaData.main} />
-        <About data={this.state.personaData.main} />
-        <Resume data={this.state.personaData.resume} />
-        <Footer data={this.state.personaData.main} />
-      </div>
-    );
-  }
-}
-
-export default App;
+export const App = () => (
+  <div className="App">
+    <Header social={PERSONA.SOCIAL} />
+    <About data={PERSONA.MAIN} />
+    <Resume
+      privacy_policies={PERSONA.RESUME.PRIVACY_POLICIES}
+      skills={PERSONA.RESUME.SKILLS}
+    />
+    <Testimonials testimonials={PERSONA.TESTIMONIALS} />
+    <Footer social={PERSONA.SOCIAL} />
+  </div>
+);
